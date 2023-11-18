@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { allDocs } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
+import { title } from "process";
 
 export const generateStaticParams = (): { slug: string[] }[] => {
   return allDocs.map((doc) => {
@@ -17,19 +18,20 @@ export const generateMetadata = ({
 }: {
   params: { slug: string[] };
 }): Metadata => {
-  console.log(params);
   const slug = params.slug.join("/");
-  console.log("slug", slug);
   const doc = allDocs.find((d) => d._raw.flattenedPath === slug);
-  console.log(allDocs);
-  console.log(doc);
+  if (!doc) {
+    return { title: "Not found" };
+  }
   return { title: doc.title };
 };
 
-const PostLayout = ({ params }: { params: { slug: string } }) => {
+const PostLayout = ({ params }: { params: { slug: string[] } }) => {
   const slug = params.slug.join("/");
-  console.log("slug2", slug);
   const doc = allDocs.find((d) => d._raw.flattenedPath === slug)!;
+  if (!doc) {
+    return <div>Not found</div>;
+  }
 
   const Content = getMDXComponent(doc.body.code);
 
