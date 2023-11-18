@@ -1,6 +1,6 @@
-// import { format, parseISO } from "date-fns";
 import type { Metadata } from "next";
 import { allDocs } from "contentlayer/generated";
+import dayjs from "dayjs";
 import { getMDXComponent } from "next-contentlayer/hooks";
 
 export const generateStaticParams = (): { slug: string[] }[] =>
@@ -9,9 +9,9 @@ export const generateStaticParams = (): { slug: string[] }[] =>
 export const generateMetadata = ({
   params,
 }: {
-  params: { slug: string[] };
+  params: { slug?: string[] };
 }): Metadata => {
-  const slug = params.slug.join("/");
+  const slug = params.slug?.join("/") ?? "";
   const doc = allDocs.find((d) => d._raw.flattenedPath === slug);
   if (!doc) {
     return { title: "Not found" };
@@ -19,8 +19,8 @@ export const generateMetadata = ({
   return { title: doc.title };
 };
 
-const PostLayout = ({ params }: { params: { slug: string[] } }) => {
-  const slug = params.slug.join("/");
+const PostLayout = ({ params }: { params: { slug?: string[] } }) => {
+  const slug = params.slug?.join("/") ?? "";
   const doc = allDocs.find((d) => d._raw.flattenedPath === slug)!;
   if (!doc) {
     return <div>Not found</div>;
@@ -32,7 +32,7 @@ const PostLayout = ({ params }: { params: { slug: string[] } }) => {
     <article className="mx-auto max-w-xl py-8">
       <div className="mb-8 text-center">
         <time dateTime={doc.date} className="mb-1 text-xs text-gray-600">
-          {doc.date}
+          {dayjs(doc.date).format("YYYY-MM-DD")}
         </time>
         <h1>{doc.title}</h1>
       </div>
