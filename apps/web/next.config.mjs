@@ -1,5 +1,7 @@
 // Importing env files here to validate on build
 import "./src/env.mjs";
+import { withContentlayer } from "next-contentlayer";
+
 import "@aiabit/auth/env.mjs";
 
 /** @type {import("next").NextConfig} */
@@ -9,7 +11,10 @@ const config = {
   transpilePackages: ["@aiabit/api", "@aiabit/auth", "@aiabit/db"],
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
+  experimental: {
+    mdxRs: false,
+  },
   typescript: { ignoreBuildErrors: true },
 };
 
-export default config;
+export default withContentlayer(config);
