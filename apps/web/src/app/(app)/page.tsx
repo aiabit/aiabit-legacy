@@ -1,11 +1,4 @@
-import { Suspense } from "react";
-
-// import { AuthShowcase } from "./_components/auth-showcase";
-// import {
-//   CreatePostForm,
-//   PostCardSkeleton,
-//   PostList,
-// } from "./_components/posts";
+import { Button } from 'antd'
 
 export const runtime = "edge";
 
@@ -16,8 +9,8 @@ export default function HomePage() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           Aiabit
         </h1>
+        <Button>Test</Button>
         {/* <AuthShowcase /> */}
-
         {/* <CreatePostForm /> */}
         {/* <div className="h-[40vh] w-full max-w-2xl overflow-y-scroll"> */}
         {/* <Suspense

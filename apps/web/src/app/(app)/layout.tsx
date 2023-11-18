@@ -1,9 +1,10 @@
 import { PropsWithChildren } from 'react'
+import AntdProvider from '~/components/antd-provider'
 
 export default function AppLayout(props: PropsWithChildren) {
   return (
-    <div>
+    <AntdProvider>
       {props.children}
-    </div>
+    </AntdProvider>
   )
 }
