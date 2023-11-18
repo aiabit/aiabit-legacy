@@ -1,0 +1,4 @@
+{
+  "extends": "@aiabit/tsconfig/base.json",
+  "include": ["routes"]
+}
