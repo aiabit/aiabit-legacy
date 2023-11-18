@@ -2,16 +2,9 @@
 import type { Metadata } from "next";
 import { allDocs } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
-import { title } from "process";
 
-export const generateStaticParams = (): { slug: string[] }[] => {
-  return allDocs.map((doc) => {
-    console.log(doc.url);
-    const slug = doc._raw.flattenedPath.split("/");
-    console.log(slug);
-    return { slug };
-  });
-};
+export const generateStaticParams = (): { slug: string[] }[] =>
+  allDocs.map((doc) => ({ slug: doc._raw.flattenedPath.split("/") }));
 
 export const generateMetadata = ({
   params,

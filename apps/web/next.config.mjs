@@ -14,6 +14,10 @@ const config = {
   experimental: {
     mdxRs: false,
   },
+  webpack(config) {
+    config.infrastructureLogging = { level: "error" };
+    return config;
+  },
   typescript: { ignoreBuildErrors: true },
 };
 
