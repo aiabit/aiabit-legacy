@@ -24,9 +24,7 @@ export default function Anchor() {
     <BaseAnchor
       className="mb-8"
       items={items}
-      getCurrentAnchor={() => {
-        return pathname;
-      }}
+      getCurrentAnchor={() => pathname}
       onClick={onAnchorClick}
     />
   );

@@ -30,12 +30,6 @@ const PostLayout = ({ params }: { params: { slug?: string[] } }) => {
   }
 
   const Content = getMDXComponent(doc.body.code);
-  const anchors = allDocs.map((doc) => ({
-    key: trimEnd(doc.url, "/"),
-    href: trimEnd(doc.url, "/"),
-    title: doc.title,
-  }));
-  console.log(anchors);
 
   return (
     <article className="mx-auto max-w-xl py-8">
