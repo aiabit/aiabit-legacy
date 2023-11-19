@@ -1,4 +1,5 @@
-import { Button } from 'antd'
+import Link from "next/link";
+import { Button } from "antd";
 
 export const runtime = "edge";
 
@@ -9,6 +10,7 @@ export default function HomePage() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           Aiabit
         </h1>
+        <Link href="/docs">Docs</Link>
         <Button>Test</Button>
         {/* <AuthShowcase /> */}
         {/* <CreatePostForm /> */}

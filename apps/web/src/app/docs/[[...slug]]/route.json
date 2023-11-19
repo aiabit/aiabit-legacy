@@ -1,0 +1,22 @@
+{
+  "title": "Aiabit",
+  "nav": [
+    {
+      "title": "Introduction",
+      "href": "/docs",
+      "key": "/docs"
+    },
+    {
+      "title": "Guide",
+      "href": "/docs/guide",
+      "key": "/docs/guide",
+      "children": [
+        {
+          "title": "Quick Start",
+          "key": "/docs/guide/quick-start",
+          "href": "/docs/guide/quick-start"
+        }
+      ]
+    }
+  ]
+}

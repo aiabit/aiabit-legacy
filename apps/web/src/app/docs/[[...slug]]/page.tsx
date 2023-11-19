@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { allDocs } from "contentlayer/generated";
 import dayjs from "dayjs";
+import { trimEnd } from "lodash";
 import { getMDXComponent } from "next-contentlayer/hooks";
+
+import Anchor from "./Anchor";
 
 export const generateStaticParams = (): { slug: string[] }[] =>
   allDocs.map((doc) => ({ slug: doc._raw.flattenedPath.split("/") }));
@@ -27,9 +30,16 @@ const PostLayout = ({ params }: { params: { slug?: string[] } }) => {
   }
 
   const Content = getMDXComponent(doc.body.code);
+  const anchors = allDocs.map((doc) => ({
+    key: trimEnd(doc.url, "/"),
+    href: trimEnd(doc.url, "/"),
+    title: doc.title,
+  }));
+  console.log(anchors);
 
   return (
     <article className="mx-auto max-w-xl py-8">
+      <Anchor />
       <div className="mb-8 text-center">
         <time dateTime={doc.date} className="mb-1 text-xs text-gray-600">
           {dayjs(doc.date).format("YYYY-MM-DD")}

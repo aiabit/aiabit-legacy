@@ -1,6 +1,10 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from "contentlayer/source-files";
 
-const Docs = defineDocumentType(() => ({
+const Docs = defineNestedType(() => ({
   name: "Docs",
   filePathPattern: `**/*.mdx`,
   contentType: "mdx",
